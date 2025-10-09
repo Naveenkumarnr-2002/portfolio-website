@@ -1,0 +1,2025 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Naveen Kumar | Portfolio</title>
+    <link rel="stylesheet" href="style.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/2a47e7367b.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+          rel="stylesheet">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: black;
+        }
+
+        .card {
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            white-space: normal;
+        }
+
+        .cards {
+            position: relative;
+            width: 90%;
+            max-width: 1500px;
+            min-height: 200px; /* initial collapsed height */
+            color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.42);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.8s ease;
+            cursor: pointer;
+            margin: 50px auto;
+            background: #1e1e1e; /* fallback if video fails */
+        }
+
+        .cards:hover {
+            min-height: 500px;
+        }
+
+        #card-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: auto;
+            opacity: 2;
+            object-fit: contain; /* fills card, keeps aspect ratio */
+            z-index: 0; /* behind content */
+            transition: all 0.8s ease; /* smooth resize */
+            border-radius: 15px;
+        }
+
+        .custom-navbar {
+            position: fixed; /* Make navbar fixed */
+            top: 0; /* Stick to the top */
+            left: 0;
+            width: 100%; /* Full width */
+            z-index: 1050; /* Stay above other content */
+            background-color: #23272b;
+            padding: 10px 20px;
+            margin-bottom: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0;
+        }
+
+        .menu-btn-group {
+            position: absolute;
+            left: 70px; /* starts slightly inside, not at the edge */
+            font-weight: 800;
+        }
+
+        .navbar-logo {
+            text-align: center;
+            width: 100%;
+        }
+
+        .logo-img {
+            height: 45px; /* adjust as needed */
+            width: auto;
+            display: block;
+            margin: 0 auto; /* centers horizontally */
+        }
+
+        .dropdown-menu {
+            padding: 0;
+            width: 200px;
+        }
+
+        .dropdown-menu .custom-btn {
+            width: 90%;
+            border-radius: 0;
+            text-align: left;
+            padding: 10px 15px;
+            border: none;
+            background-color: transparent;
+            color: black;
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        .dropdown-menu .custom-btn:hover {
+            background-color: #003eff;
+            color: white;
+        }
+
+
+        /* Right Resume Button */
+        .resume-btn-group {
+            position: absolute;
+            right: 70px;
+        }
+
+        .resume-btn {
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .resume-btn:hover {
+            background-color: #1a988d;
+            color: #fff;
+            transform: scale(1.05);
+        }
+
+        /*CSS for profile card*/
+        .profile-card {
+            position: relative;
+            width: 90%;
+            max-width: 1300px;
+            min-height: 250px;
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            border-radius: 15px;
+            /*box-shadow: 0 4px 15px rgba(0, 0, 0, 0.42);*/
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.8s ease;
+            padding: 20px;
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.15);
+
+        }
+        .profile-card:hover{
+            transform: scale(1.02);
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.25);
+        }
+
+        /* Background video */
+        .video-bg-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .video-bg-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            border-radius: 15px;
+            filter: brightness(0.5);
+        }
+        .profile-card:hover .video-bg-container video{
+            opacity: 1;
+            filter: brightness(80%);
+
+        }
+
+
+        /* Profile Picture */
+        .profile-pic {
+            position: absolute;
+            right: 50%;
+            transform: translateX(50%);
+            width: 230px;
+            height: 230px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid white;
+            opacity: 0;
+            transition: all 0.8s ease;
+        }
+
+        /* Text Styling */
+        .profile-text {
+            position: relative;
+            text-align: center;
+            z-index: 2;
+        }
+
+        .profile-name {
+            position: relative;
+            font-size: 2.2rem;
+            text-align: center;
+            font-weight: 700;
+            margin: 0;
+            transition: all 0.8s ease;
+        }
+
+        .profile-role {
+            position: relative;
+            font-size: 1.3rem;
+            text-align: center;
+            font-weight: 500;
+            margin: 0;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease;
+        }
+
+        /* Hover Effects */
+        .profile-card:hover .profile-name {
+            transform: translateX(-350px);
+            opacity: 0.9;
+        }
+
+        .profile-card:hover .profile-role {
+            opacity: 1;
+            transform: translateY(-30px);
+        }
+
+        .profile-card:hover .profile-pic {
+            transform: translateX(450px);
+            opacity: 0.8;
+        }
+
+        /* Responsiveness for profile  */
+        @media (max-width: 1200px) {
+            .profile-card {
+                flex-direction: column;
+                text-align: center;
+                width: 95%;
+                padding: 15px;
+            }
+
+            .profile-pic {
+                width: 120px;
+                height: 120px;
+                position: relative;
+                right: auto;
+                transform: none;
+                margin-top: 5px;
+            }
+
+            .profile-card:hover .profile-pic {
+                transform: translateY(0);
+            }
+
+            .profile-card:hover .profile-name {
+                align-items: center;
+                transform: translateY(-5px);
+            }
+
+            .profile-card:hover .profile-role {
+                transform: translateY(0);
+            }
+        }
+
+        /*CSS for ABout ME card*/
+        .aboutMe-card {
+            position: relative;
+            width: 90%;
+            max-width: 1200px;
+            min-height: 250px;
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.8s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgb(0, 0, 0);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.15);
+
+        }
+        .aboutMe-card:hover{
+            transform: scale(1.02);
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.25);
+        }
+
+        /* Background video */
+        .aboutMe-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            object-fit: cover;
+            z-index: 0;
+            filter: brightness(20%);
+            transition: filter 0.8s ease-in-out;
+        }
+
+        /* Overlay container for title + content */
+        .aboutMe-overlay {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            padding: 20px;
+            text-align: center;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* Title */
+        .aboutMe-title {
+            font-size: 2rem;
+            text-align: center;
+            font-weight: 600;
+            margin: 0;
+            transform: translateY(85px);
+            transition: all 0.8s ease;
+        }
+
+        /* Content (initially hidden) */
+        .aboutMe-content {
+            opacity: 0;
+            font-weight: 500;
+            padding: 15px;
+            transform: translateY(30px);
+            /*transition: all 0.9s ease;*/
+            font-family: "Montserrat", sans-serif;
+            font-size: 1rem;
+            text-align: center;
+            line-height: 1.6;
+            margin-top: 15px;
+            border: 1px solid white;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            transition: transform 0.8s ease, background 0.8s ease;
+        }
+        .aboutMe-content:hover{
+            transform: scale(1.2);
+            background: rgba(255, 255, 255, 0.12);
+
+        }
+
+        /* Hover animation */
+        .aboutMe-card:hover .aboutMe-title {
+            transform: translateY(-10px);
+        }
+
+        .aboutMe-card:hover .aboutMe-content {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .aboutMe-card:hover .aboutMe-video{
+            opacity: 1;
+            filter: brightness(40%);
+        }
+
+        /* Responsive adjustments for AboutMe */
+        @media (max-width: 768px) {
+            .aboutMe-card {
+                width: 95%;
+                min-height: 300px;
+            }
+
+            .aboutMe-title {
+                font-size: 1.6rem;
+                transform: translateY(130px);
+            }
+
+            .aboutMe-content {
+                font-size: 0.9rem;
+                line-height: 1.4;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .aboutMe-title {
+                font-size: 1.4rem;
+            }
+
+            .aboutMe-content {
+                font-size: 0.85rem;
+            }
+        }
+
+        /* ====== Skills Card Styling ====== */
+        .skills {
+            position: relative;
+            width: 90%;
+            max-width: 1200px;
+            overflow: hidden;
+            min-height: 250px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            background: rgba(0, 0, 0, 0.45);
+            backdrop-filter: blur(8px);
+            color: white;
+            text-align: center;
+            justify-content: center;
+            padding: 40px 20px;
+            transition: all 0.9s ease-in-out;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.15);
+        }
+        .skills:hover{
+            transform: scale(1.02);
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.25);
+        }
+
+        /* Background video */
+        #skills-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            opacity: 0;
+            filter: brightness(60%);
+            transition: filter 0.8s ease-in-out;
+        }
+
+        /* Title */
+        .card-skillsTitle {
+            font-size: 2rem;
+            font-weight: 700;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            transition: transform 0.9s ease, color 0.9s ease;
+        }
+
+        /* Hidden content */
+        .card-skillsContent {
+            opacity: 0;
+            max-height: 0;
+            align-items: center;
+            overflow: hidden;
+            transition: opacity 0.7s ease, max-height 0.7s ease;
+        }
+
+        /* On hover */
+        .skills:hover .card-skillsTitle {
+            transform: translateY(-10px);
+            color: #fff;
+        }
+
+        .skills:hover .card-skillsContent {
+            opacity: 1;
+            max-height: 2000px;
+        }
+
+        .skills:hover #skills-video {
+            opacity: 1;
+            filter: brightness(90%);
+        }
+
+        /* Skill Buttons */
+        .tech-btn {
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            margin: 5px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .tech-btn:hover {
+            background-color: white;
+            color: black;
+            transform: scale(1.05);
+        }
+
+        /* Rows (each category) */
+        .card-skillsContent p {
+            margin: 15px 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        /* Emphasize labels */
+        .card-skillsContent strong {
+            font-weight: 700;
+            color: #fff;
+            justify-content: center;
+            letter-spacing: 1px;
+        }
+
+        /* ====== Responsive Design for skills ====== */
+        @media (max-width: 992px) {
+            .skills {
+                width: 90%;
+                margin: 0 auto;
+                padding: 25px;
+            }
+
+            .card-skillsTitle {
+                font-size: 1.8rem;
+            }
+
+            .tech-btn {
+                font-size: 0.9rem;
+                padding: 6px 10px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .card-skillsTitle {
+                font-size: 1.5rem;
+            }
+
+            .card-skillsContent {
+                font-size: 0.9rem;
+            }
+
+            .tech-btn {
+                font-size: 0.8rem;
+                padding: 5px 8px;
+            }
+        }
+
+
+        /* ====== Experience Card Base ====== */
+        .experience {
+            position: relative;
+            width: 90%;
+            max-width: 1200px;
+            overflow: hidden;
+            min-height: 250px;
+            max-height: 1500px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            background: rgba(0, 0, 0, 0.45);
+            backdrop-filter: blur(8px);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            transition: all 0.8s ease-in-out;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.15);
+
+        }
+        /* ====== Background Video ====== */
+        #experience-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            opacity: 0;
+            filter: brightness(60%);
+            transition: filter 0.8s ease-in-out;
+        }
+
+        /* ====== Title ====== */
+        .card-experience-title {
+            font-size: 2rem;
+            text-align: center;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            transform: translateY(50px);
+            transition: transform 0.6s ease, color 0.6s ease;
+        }
+
+        /* ====== Hidden Content (Default) ====== */
+        .card-experience-content {
+            opacity: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: opacity 1s ease, max-height 1s ease;
+            /*transition: opacity 0.7s ease, max-height 0.7s ease;*/
+        }
+
+        /* ====== Hover Effects ====== */
+        .experience:hover{
+            transform: scale(1.02);
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.25);
+        }
+        .experience:hover .card-experience-title {
+            transform: translateY(-10px);
+            color: #ffffff;
+        }
+
+        .experience:hover .card-experience-content {
+            opacity: 1;
+            max-height: 1000px;
+        }
+
+        .experience:hover #experience-video {
+            opacity: 1;
+            filter: brightness(50%);
+        }
+
+        /* ====== Subtitle Styling ====== */
+        .card-experience-subtitle1,
+        .card-experience-subtitle2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-top: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #e2e2e2;
+        }
+
+        /* ====== Paragraph Content ====== */
+        .card-experience-content p {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            line-height: 1.6;
+            font-weight: 500;
+            color: #f3f3f3;
+            margin: 10px auto;
+            max-width: 800px;
+            padding: 0 20px;
+            border: 1px solid white;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            transition: transform 0.8s ease, background 0.8s ease;
+            border-radius: 15px;
+        }
+        .card-experience-content p:hover{
+            transform: scale(1.02);
+            background: rgba(255, 255, 255, 0.12);
+
+        }
+
+        /* ====== Responsive Design for experience ====== */
+        @media (max-width: 992px) {
+            .experience {
+                width: 90%;
+                margin: 0 auto;
+                padding: 25px;
+            }
+
+            .card-experience-title {
+                font-size: 1.8rem;
+                transform: translateY(85px);
+            }
+
+            .card-experience-content p {
+                font-size: 0.95rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .card-experience-title {
+                font-size: 1.5rem;
+            }
+
+            .card-experience-content p {
+                font-size: 0.9rem;
+                padding: 0 10px;
+            }
+
+            .card-experience-subtitle1,
+            .card-experience-subtitle2 {
+                font-size: 1rem;
+            }
+        }
+
+
+        /* ====== PROJECT CARD BASE ====== */
+        .project {
+            position: relative;
+            width: 90%;
+            max-width: 1200px;
+            min-height: 250px;
+            overflow: hidden;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            background: rgba(0, 0, 0, 0.45);
+            backdrop-filter: blur(8px);
+            color: white;
+            text-align: center;
+            padding: 40px 25px;
+            transition: all 0.6s ease-in-out;
+            margin: auto;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.15);
+
+        }
+        .project:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.25);
+        }
+
+        /* ====== VIDEO BACKGROUND ====== */
+        #project-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            object-fit: cover;
+            z-index: -1;
+            filter: brightness(30%);
+            transition: filter 0.5s ease-in-out;
+        }
+
+        /* ====== TITLE ====== */
+        .card-project-title {
+            font-size: 2rem;
+            font-weight: 700;
+            text-align: center;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            transform: translateY(60px);
+            transition: transform 0.6s ease, color 0.6s ease;
+        }
+
+        /* ====== CONTENT (hidden by default) ====== */
+        .card-project-content {
+            opacity: 0;
+            text-align: center;
+            justify-content: center;
+            max-height: 0;
+            overflow: hidden;
+            transition: opacity 0.8s ease, max-height 0.8s ease;
+        }
+
+        /* ====== HOVER ANIMATION ====== */
+        .project:hover .card-project-title {
+            transform: translateY(-25px);
+            color: #fff;
+        }
+
+        .project:hover .card-project-content {
+            opacity: 1;
+            max-height: 3000px;
+        }
+
+        .project:hover #project-video {
+            opacity: 0.6;
+            filter: brightness(30%);
+        }
+
+        /* ====== FLEX CONTAINER FOR CARDS ====== */
+        .project-cards-container {
+            display: flex;
+            flex-wrap: wrap; /* Wrap when screen is small */
+            justify-content: center; /* Center all cards */
+            gap: 20px; /* Space between cards */
+            margin-top: 20px;
+        }
+
+        /* ====== INDIVIDUAL PROJECT CARDS ====== */
+        .card-project {
+            flex: 1 1 calc(50% - 40px); /* Two per row */
+            max-width: 500px; /* Limit width */
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            transition: transform 0.4s ease, background 0.4s ease;
+        }
+
+        .card-project:hover {
+            transform: scale(1.02);
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        /* ====== PROJECT TITLE ====== */
+        .card-project-subtitle {
+            font-size: 1.4rem;
+            font-weight: 700;
+            text-transform: capitalize;
+            margin-bottom: 10px;
+        }
+
+        /* ====== TECH BUTTONS ====== */
+        .card-project-tech {
+            margin-bottom: 10px;
+        }
+
+        .tech-btn {
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            margin: 4px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .tech-btn:hover {
+            background-color: white;
+            color: black;
+            transform: scale(1.05);
+        }
+
+        /* ====== PARAGRAPH ====== */
+        .card-project p {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #f5f5f5;
+        }
+
+        /* ====== PROJECT BUTTONS ====== */
+        .project-buttons {
+            margin-top: 10px;
+        }
+
+        .project-buttons .btn {
+            margin: 5px;
+        }
+
+        /* ====== RESPONSIVE DESIGN ====== */
+        @media (max-width: 992px) {
+            .project {
+                width: 90%;
+                padding: 30px;
+            }
+
+            .card-project-title {
+                font-size: 1.8rem;
+            }
+
+            .card-project {
+                flex: 1 1 calc(50% - 20px);
+                padding: 15px;
+            }
+
+            .card-project-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .card-project p {
+                font-size: 0.95rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .card-project-title {
+                font-size: 1.5rem;
+            }
+
+            .card-project-subtitle {
+                font-size: 1rem;
+            }
+
+            .card-project p {
+                font-size: 0.9rem;
+            }
+
+            .tech-btn {
+                font-size: 0.8rem;
+                padding: 5px 8px;
+            }
+
+            .card-project {
+                flex: 1 1 100%;
+                text-align: center;
+            }
+        }
+
+
+        .dropdown-menu {
+            padding: 0;
+            width: 100%;
+            min-width: 160px; /* Optional: control dropdown width */
+        }
+
+        .custom-btn {
+            font-weight: 300;
+            width: 100%;
+        }
+
+        .dropdown-menu .custom-btn:hover {
+            background-color: #0d6efd; /* Bootstrap primary color */
+            color: white;
+        }
+
+        /*   Skills Buttons */
+
+        .tech-btn {
+            /*border: 2px solid #fff;*/
+            color: #fff;
+            transition: all 0.3s ease-in-out;
+            font-weight: 600;
+        }
+
+        /* MySQL */
+        .mysql-btn:hover {
+            background-color: #00758F; /* MySQL blue */
+            border-color: #00758F;
+            color: #fff;
+        }
+
+        /* Java */
+        .java-btn:hover {
+            background-color: #E76F00; /* Java orange */
+            border-color: #E76F00;
+            color: #fff;
+        }
+
+        /* Spring Boot */
+        .spring-btn:hover {
+            background-color: #6DB33F; /* Spring green */
+            border-color: #6DB33F;
+            color: #fff;
+        }
+
+        /* Thymeleaf */
+        .thymeleaf-btn:hover {
+            background-color: #005F0F; /* Thymeleaf green */
+            border-color: #005F0F;
+            color: #fff;
+        }
+
+        /* Languages */
+        .js-btn:hover {
+            background: #F7DF1E;
+            border-color: #F7DF1E;
+            color: #000;
+        }
+
+        .linkedin-btn {
+            color: black;
+            font-weight: 600;
+        }
+
+        .linkedin-btn:hover {
+            background-color: #0A66FF;
+            border-color: #0A66FF;
+            color: #ffffff;
+        }
+
+        .php-btn:hover {
+            background: #777BB4;
+            border-color: #777BB4;
+            color: #fff;
+        }
+
+        .html-btn:hover {
+            background: #E34F26;
+            border-color: #E34F26;
+            color: #fff;
+        }
+
+        .css-btn:hover {
+            background: #1572B6;
+            border-color: #1572B6;
+            color: #fff;
+        }
+
+        .bootstrap-btn:hover {
+            background: #7952B3;
+            border-color: #7952B3;
+            color: #fff;
+        }
+
+        .springmvc-btn:hover {
+            background: #6DB33F;
+            border-color: #6DB33F;
+            color: #fff;
+        }
+
+        .laravel-btn:hover {
+            background: #FF2D20;
+            border-color: #FF2D20;
+            color: #fff;
+        }
+
+        /* Databases */
+        .mysql-btn:hover {
+            background: #00758F;
+            border-color: #00758F;
+            color: #fff;
+        }
+
+        .mongodb-btn:hover {
+            background: #47A248;
+            border-color: #47A248;
+            color: #fff;
+        }
+
+        /* Tools */
+        .github-btn {
+            background: transparent;
+            color: #000000;
+            font-weight: 600;
+
+        }
+
+        .github-btn:hover {
+
+            background: #181717;
+            border-color: #181717;
+            color: #ffffff;
+        }
+
+        .github-btn-project {
+            background: transparent;
+            color: #ffffff;
+            font-weight: 600;
+
+        }
+
+        .github-btn-project:hover {
+
+            background: #ffffff;
+            border-color: #ffffff;
+            color: #000000;
+        }
+
+        .github-btn-skills {
+            background: transparent;
+
+            color: #ffffff;
+            font-weight: 600;
+
+        }
+
+        .github-btn-skills:hover {
+            background: #ffffff;
+            border-color: #000000;
+            color: #000000;
+        }
+
+        .vscode-btn:hover {
+            background: #007ACC;
+            border-color: #007ACC;
+            color: #fff;
+        }
+
+        .intellij-btn:hover {
+            background: #ffffff;
+            border-color: #000000;
+            color: #000000;
+        }
+
+        .image-btn-skills:hover {
+            color: black;
+        }
+
+        .postman-btn:hover {
+            background: #FF6C37;
+            border-color: #FF6C37;
+            color: #fff;
+        }
+
+        .docker-btn:hover {
+            background: #2496ED;
+            border-color: #2496ED;
+            color: #fff;
+        }
+
+        /* AI Tools */
+        .chatgpt-btn:hover {
+            background: #00A67E;
+            border-color: #00A67E;
+            color: #fff;
+        }
+
+        .perplexity-btn:hover {
+            background: #0A66FF;
+            border-color: #0A66FF;
+            color: #fff;
+        }
+
+        .cursor-btn:hover {
+            background: #5A5A5A;
+            border-color: #5A5A5A;
+            color: #fff;
+        }
+
+        /* Testing & Docs */
+        .junit-btn:hover {
+            background: #25A162;
+            border-color: #25A162;
+            color: #fff;
+        }
+
+        .mockito-btn:hover {
+            background: #8BC34A;
+            border-color: #8BC34A;
+            color: #fff;
+        }
+
+        .swagger-btn:hover {
+            background: #85EA2D;
+            border-color: #85EA2D;
+            color: #000;
+        }
+
+        .phone-btn {
+            color: black;
+            font-weight: 600;
+
+        }
+
+        .phone-btn:hover {
+            background: #8395cd;
+            color: white;
+
+            .
+        }
+
+        .email-btn {
+            color: black;
+            font-weight: 600;
+        }
+
+        .email-btn:hover {
+            background-color: #ffa500; /* your brand color */
+            color: #ffffff;
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(131, 149, 205, 0.4);
+        }
+
+
+        /* ---------- Education Section Styles  ---------- */
+        #education {
+            position: relative;
+            width: 90%;
+            min-height: 250px;
+            margin: 40px auto;
+            overflow: hidden;
+            border-radius: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            transition: all 0.6s ease-in-out;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.15);
+        }
+
+        #education video {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            opacity: 0.4;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        /* Title styling */
+        .card-education-title {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin: 30px 0;
+            transform: translateY(100px);
+            transition: all 0.6s ease;
+        }
+
+        /* Education content container */
+        .card-education-content {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            padding: 20px 30px;
+            gap: 30px;
+            transition: all 0.6s ease;
+            opacity: 0;
+            transform: translateY(40px);
+        }
+
+        /* Each education item */
+        .education-item {
+            flex: 1 1 45%;
+            min-width: 300px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 15px;
+            padding: 20px;
+            transition: all 0.5s ease;
+        }
+
+        .education-item h3 {
+            font-size: 1.4rem;
+            color: #ffd166;
+            margin-bottom: 10px;
+            transition: color 0.3s ease;
+        }
+
+        .education-item h4 {
+            font-size: 1.2rem;
+            color: #e0e0e0;
+            margin-bottom: 8px;
+        }
+
+        .education-item p {
+            font-size: 1rem;
+            color: #dcdcdc;
+        }
+
+        /* Hover effects */
+        #education:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.25);
+        }
+
+        #education:hover video {
+            opacity: 0.6;
+            filter: brightness(30%);
+        }
+
+        #education:hover .card-education-title {
+            transform: translatey(-30%);
+            opacity: 0.7;
+        }
+
+        #education:hover .card-education-content {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Education item hover animation */
+        .education-item:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.15);
+        }
+
+        /* Responsive design for education */
+        @media (max-width: 992px) {
+            .card-education-title {
+                transform: translateY(240px);
+                font-size: 1.8rem;
+            }
+
+            .education-item {
+                flex: 1 1 100%;
+            }
+        }
+
+        @media (max-width: 600px) {
+            #education {
+                width: 95%;
+                border-radius: 10px;
+            }
+
+            .card-education-title {
+                font-size: 1.5rem;
+                margin: 20px 0;
+            }
+
+            .education-item {
+                padding: 15px;
+                font-size: 0.95rem;
+            }
+        }
+
+        /* ---------- Certification Section Styles ---------- */
+        #certification {
+            position: relative;
+            width: 90%;
+            margin: 40px auto;
+            overflow: hidden;
+            border-radius: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            transition: all 0.6s ease-in-out;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.15);
+        }
+
+        #certification video {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            opacity: 0.4;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        /* Title styling */
+        .card-certification-title {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin: 30px 0;
+            transform: translateY(80px);
+            transition: all 0.6s ease;
+        }
+
+        /* Certification container */
+        .card-certification-content {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            padding: 20px 30px;
+            gap: 30px;
+            transition: all 0.6s ease;
+            opacity: 0;
+            transform: translateY(40px);
+        }
+
+        /* Each certification item */
+        .certification-item {
+            flex: 1 1 45%;
+            min-width: 300px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 15px;
+            padding: 20px;
+            line-height: 1.7;
+            transition: all 0.5s ease;
+        }
+
+        .certification-item strong {
+            color: #ffd166;
+            font-weight: 600;
+        }
+
+        .certificate-btn {
+            margin-top: 10px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .certificate-btn:hover {
+            background-color: #003eff;
+            color: #ffffff;
+            border-color: #ffd166;
+        }
+
+        /* Hover effects for the whole section */
+        #certification:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.25);
+        }
+
+        #certification:hover video {
+            opacity: 0.6;
+            filter: brightness(40%);
+        }
+
+        #certification:hover .card-certification-title {
+            transform: translatey(-30%);
+            opacity: 0.7;
+        }
+
+        #certification:hover .card-certification-content {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Hover animation for each certification card */
+        .certification-item:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.15);
+        }
+
+        /* Responsive design for certificate */
+        @media (max-width: 992px) {
+            .card-certification-title {
+                transform: translateY(165px);
+                font-size: 1.8rem;
+            }
+
+            .certification-item {
+                flex: 1 1 100%;
+            }
+        }
+
+        @media (max-width: 600px) {
+            #certification {
+                width: 95%;
+                border-radius: 10px;
+            }
+
+            .card-certification-title {
+                font-size: 1.5rem;
+                margin: 20px 0;
+            }
+
+            .certification-item {
+                padding: 15px;
+                font-size: 0.95rem;
+            }
+        }
+
+        /* Card base */
+        .contact-card {
+            position: relative;
+            width: 90%;
+            max-width: 1200px;
+            min-height: 250px;
+            margin: 40px auto;
+            color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            /*border: 1px solid #ffffff;*/
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.15);
+            background: rgb(0, 0, 0); /* transparent background */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Video hidden by default */
+        .contact-video {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        #contact:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.25);
+        }
+
+        /* Overlay content */
+        .contact-overlay {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 90%;
+            gap: 10px;
+        }
+
+        /* Title and subtitle */
+        .contact-title {
+            font-size: 2rem;
+            font-weight: bold;
+            transform: translateY(80px);
+            transition: transform 0.5s ease;
+        }
+
+        .contact-subtitle {
+            opacity: 0;
+            font-size: 1.2rem;
+            transition: opacity 0.5s ease;
+        }
+
+        /* Buttons layout - 2 per row */
+        .contact-content {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+
+        .contact-content .btn {
+            border: 2px solid black;
+            background: transparent;
+            color: black;
+            font-weight: 600;
+            padding: 8px 12px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-content .email-btn:hover {
+            background: #ffa500;
+            color: white;
+        }
+
+        .contact-content .phone-btn:hover {
+            background: #1a988d;
+            color: white;
+        }
+
+        .contact-content .github-btn:hover {
+            background: #000000;
+            color: white;
+        }
+
+        .contact-content .linkedin-btn:hover {
+            background: #0080dc;
+            color: white;
+        }
+
+        /* Hover effects */
+        .contact-card:hover .contact-title {
+            color: black;
+            transform: translateY(0);
+        }
+
+        .contact-card:hover .contact-subtitle {
+            color: black;
+            opacity: 1;
+            font-weight: 700;
+            transform: translateY(-20px);
+
+        }
+
+        .contact-card:hover .contact-content {
+            opacity: 1;
+            transform: translateY(-10px);
+        }
+
+        .contact-card:hover .contact-video {
+            opacity: 1;
+            filter: brightness(50%);
+        }
+
+        /* Responsive */
+        @media (max-width: 500px) {
+            .contact-title{
+                transform: translateY(130px);
+            }
+            .contact-content {
+                grid-template-columns: 1fr; /* single column on small screens */
+            }
+        }
+
+
+        video {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .card {
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            white-space: normal;
+        }
+    </style>
+
+</head>
+<body>
+<div class="cards col-11 mx-auto my-4 shadow  rounded">
+
+    <!--    <video autoplay muted loop id="card-video" aria-hidden="true">-->
+    <!--        <source src="videos/background_video.mp4" type="video/mp4">-->
+    <!--        Your browser does not support the video tag.-->
+    <!--    </video>-->
+
+    <header>
+        <nav class="navbar custom-navbar fixed-top">
+            <div class="container-fluid">
+                <!-- Left: Menu button -->
+                <div class="menu-btn-group">
+                    <div class="btn-group">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                data-bs-auto-close="inside" aria-expanded="false"> MENU
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="btn btn-primary custom-btn" href="#aboutMe">ABOUT</a></li>
+                            <li><a class="btn btn-primary custom-btn" href="#skills">SKILLS</a></li>
+                            <li><a class="btn btn-primary custom-btn" href="#experience">EXPERIENCE</a></li>
+                            <li><a class="btn btn-primary custom-btn" href="#project">PROJECT</a></li>
+                            <li><a class="btn btn-primary custom-btn" href="#education">EDUCATION</a></li>
+                            <li><a class="btn btn-primary custom-btn" href="#certification">CERTIFICATIONS</a></li>
+                            <li><a class="btn btn-primary custom-btn" href="#contact">CONTACTS</a></li>
+
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Center: Logo -->
+                <div class="navbar-logo">
+                    <img src="images/Logo.png" class=" image logo-img rounded d-flex justify-content-center" alt="Logo">
+                </div>
+
+
+                <div class="resume-btn-group" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                     title="Click to view resume">
+                    <a href="asserts/Naveen_Kumar_Resume.pdf" target="_blank" download
+                       class="btn btn-outline-light resume-btn">
+                        <i class="fa-solid fa-file-lines"></i> Resume
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <br>
+    <div class="container my-5 d-flex justify-content-center">
+        <div class="profile-card">
+            <div class="video-bg-container">
+                <video autoplay muted loop playsinline>
+                    <source src="videos/profile_video1.mp4" type="video/mp4">
+                </video>
+            </div>
+
+            <img src="images/Profile.jpg" alt="Profile Picture" class="profile-pic">
+
+            <div class="profile-text">
+                <h1 class="profile-name">Naveen Kumar</h1>
+                <h2 class="profile-role">Full-Stack Developer</h2>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container my-5 d-flex justify-content-center">
+        <div id="aboutMe" class="aboutMe-card">
+            <video autoplay muted loop playsinline class="aboutMe-video">
+                <source src="videos/aboutMe_video.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+
+            <div class="aboutMe-overlay">
+                <h1 class="aboutMe-title">About Me</h1>
+                <div class="aboutMe-content">
+                    <p>
+                        Hi, I’m <strong>Naveen Kumar</strong>, a passionate Full-Stack Developer with hands-on
+                        experience in
+                        building real-world applications such as Employee Management Systems, Online Bus Ticket Booking
+                        platforms,
+                        and Patient Medicine & Appointment Systems.
+                        I specialize in Java, Spring Boot, Spring Security, MySQL, MongoDB, and RESTful APIs, along with
+                        front-end
+                        technologies like HTML, CSS, JavaScript, Bootstrap, and Thymeleaf.
+                        My focus is on creating scalable, secure, and user-friendly applications while continuously
+                        improving my
+                        technical expertise and problem-solving skills.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container my-5 d-flex justify-content-center">
+        <div id="skills" class="card skills expandable my-4 d-flex">
+            <!-- Background Video -->
+            <video autoplay muted loop id="skills-video" aria-hidden="true">
+                <source src="videos/skills_video.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+
+            <!-- Title -->
+            <div class="card-skillsTitle">Skills</div>
+
+            <!-- Content -->
+            <div class="card-skillsContent">
+
+                <!-- Programming -->
+                <p class="programming">
+                    <strong>Programming Languages:</strong>
+                    <a class="btn tech-btn java-btn btn-outline-light"><i class="fa-brands fa-java"></i> Java</a>
+                    <a class="btn tech-btn js-btn btn-outline-light"><i class="fa-brands fa-square-js"></i>
+                        JavaScript</a>
+                    <a class="btn tech-btn mysql-btn btn-outline-light"><i class="bi bi-filetype-sql"></i> MySQL</a>
+                    <a class="btn tech-btn php-btn btn-outline-light"><i class="fa-brands fa-php"></i> PHP</a>
+                </p>
+
+                <!-- Frontend -->
+                <p class="frontend">
+                    <strong>Frontend:</strong>
+                    <a class="btn tech-btn html-btn btn-outline-light"><i class="fa-brands fa-html5"></i> HTML</a>
+                    <a class="btn tech-btn css-btn btn-outline-light"><i class="fa-brands fa-css3-alt"></i> CSS</a>
+                    <a class="btn tech-btn thymeleaf-btn btn-outline-light"><i class="fa-brands fa-envira"></i>
+                        Thymeleaf</a>
+                    <a class="btn tech-btn bootstrap-btn btn-outline-light"><i class="fa-brands fa-bootstrap"></i>
+                        Bootstrap</a>
+                </p>
+
+                <!-- Backend -->
+                <p class="backend">
+                    <strong>Backend:</strong>
+                    <a class="btn tech-btn spring-btn btn-outline-light"><i class="fa-solid fa-power-off"></i> Spring
+                        Boot</a>
+                    <a class="btn tech-btn springmvc-btn btn-outline-light"><i class="fa-solid fa-leaf"></i> Spring MVC</a>
+                    <a class="btn tech-btn laravel-btn btn-outline-light"><i class="fa-brands fa-laravel"></i>
+                        Laravel</a>
+                </p>
+
+                <!-- Databases -->
+                <p class="databases">
+                    <strong>Databases:</strong>
+                    <a class="btn tech-btn mysql-btn btn-outline-light"><i class="bi bi-filetype-sql"></i> MySQL</a>
+                    <a class="btn tech-btn mongodb-btn btn-outline-light">
+                        <img src="images/MongoDB.png" style="height: 20px; width: 20px;"> MongoDB
+                    </a>
+                </p>
+
+                <!-- Tools & Platforms -->
+                <p class="tools">
+                    <strong>Tools & Platforms:</strong>
+                    <a class="btn tech-btn github-btn-skills btn-outline-light"><i class="fa-brands fa-github"></i>
+                        GitHub</a>
+                    <a class="btn tech-btn vscode-btn btn-outline-light">
+                        <img src="images/VS%20Code.png" style="height: 20px; width: 20px;"> VS Code
+                    </a>
+                    <a class="btn tech-btn intellij-btn btn-outline-light">
+                        <img src="images/Intellij.png" style="height: 20px; width: 20px;"> IntelliJ IDEA
+                    </a>
+                    <a class="btn tech-btn postman-btn btn-outline-light">
+                        <img src="images/Postman.png" style="height: 20px; width: 20px;"> Postman
+                    </a>
+                    <a class="btn tech-btn docker-btn btn-outline-light"><i class="fa-brands fa-docker"></i> Docker</a>
+                </p>
+
+                <!-- AI Tools -->
+                <p class="aitools">
+                    <strong>AI-Assisted Tools:</strong>
+                    <a class="btn tech-btn chatgpt-btn btn-outline-light">
+                        <img src="images/chatgpt-removebg-preview.png" style="width: 20px; height: 20px;"> ChatGPT
+                    </a>
+                    <a class="btn tech-btn perplexity-btn btn-outline-light"><i class="bi bi-perplexity"></i> Perplexity</a>
+                    <a class="btn tech-btn cursor-btn btn-outline-light">
+                        <img src="images/Cursor%20AI.png" style="width: 20px; height: 20px;"> Cursor AI
+                    </a>
+                </p>
+
+                <!-- Testing -->
+                <p class="testing">
+                    <strong>Testing & API Docs:</strong>
+                    <a class="btn tech-btn junit-btn btn-outline-light"><i class="fa-solid fa-microscope"></i> JUnit</a>
+                    <a class="btn tech-btn mockito-btn btn-outline-light"><i class="fa-solid fa-microscope"></i> Mockito</a>
+                    <a class="btn tech-btn swagger-btn btn-outline-light"><i class="fa-solid fa-bars"></i> Swagger</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+    <div class="container my-5 d-flex justify-content-center">
+
+        <div id="experience" class="card experience expandable my-4 d-flex">
+            <!-- Background Video -->
+            <video autoplay muted loop id="experience-video" aria-hidden="true">
+                <source src="videos/experience_video.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+
+            <!-- Title -->
+            <div class="card-experience-title">EXPERIENCE</div>
+
+            <!-- Content -->
+            <div class="card-experience-content">
+                <div class="card-experience-subtitle1">INTERNSHIP</div>
+                <p class="card-experience-content1">
+                    Completed a 20-day internship at <strong>Kevell Corp</strong> with hands-on training in
+                    Core Java, focusing on OOP principles, collections, and exception handling.
+                    Gained practical experience in writing, testing, and debugging Java programs.
+                </p>
+
+                <div class="card-experience-subtitle2">TRAINEE</div>
+                <p class="card-experience-content2">
+                    Completed a 3-month Web Development Trainee program at <strong>ESOL Soft</strong>,
+                    focusing on PHP and Laravel frameworks.
+                    Contributed to the development of web applications using MVC architecture,
+                    gaining hands-on experience in database integration and enhancing project delivery timelines by 10%.
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="container my-5 d-flex justify-content-center">
+
+        <div id="project" class="card project expandable my-4 d-flex">
+
+            <video autoplay muted loop id="project-video" aria-hidden="true">
+                <source src="videos/projects_video1.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+
+            <div class="card-project-title">PROJECTS</div>
+
+            <div class="card-project-content">
+                <div class="project-cards-container">
+                    <!-- project 1 -->
+                    <div class="card card-project">
+                        <div class="card-project-subtitle">Online Bus Ticket Booking System</div>
+                        <div class="card-project-tech">
+                            Tech:
+                            <a class="btn tech-btn spring-btn btn-outline-light"><i class="fa-solid fa-power-off"></i>
+                                SpringBoot</a>
+                            <a class="btn tech-btn mysql-btn btn-outline-light"><i class="bi bi-filetype-sql"></i> MySQL</a>
+                            <a class="btn tech-btn thymeleaf-btn btn-outline-light"><i class="fa-brands fa-envira"></i>
+                                ThymeLeaf</a>
+                        </div>
+                        <hr>
+                        <p>
+                            Designed and implemented a full-stack application using Spring Boot, MySQL, and Thymeleaf to
+                            enable users to search and book bus tickets. Built role-based authentication with Spring
+                            Security and RESTful APIs.
+                        </p>
+                        <div class="project-buttons">
+                            <a href="https://github.com/Naveenkumarnr-2002/Bus-Ticket-Booking"
+                               class="btn tech-btn btn-outline-light" target="_blank"><i
+                                    class="fa-brands fa-github"></i> GitHub</a>
+                            <a href="https://drive.google.com/file/d/10fiEXnHBz2lQnkncahZHyuNu5Dt8Vp-6/view?usp=sharing"
+                               class="btn tech-btn btn-outline-light" target="_blank">Demo</a>
+                        </div>
+                    </div>
+                    <!--project 2-->
+                    <div class="card card-project">
+                        <div class="card-project-subtitle">Employee Management System</div>
+                        <div class="card-project-tech">Tech: <a class="btn tech-btn spring-btn btn-outline-light"><i
+                                class="fa-solid fa-power-off"></i>
+                            SpringBoot</a>
+                            <a class="btn tech-btn mongodb-btn btn-outline-light"><img src="images/MongoDB.png"
+                                                                                       style="height: 20px;width: 20px;">MongoDB</a>
+                            <a class="btn tech-btn thymeleaf-btn btn-outline-light"><i class="fa-brands fa-envira"></i>
+                                ThymeLeaf</a>
+
+                        </div>
+                        <hr>
+                        <p class="">
+                            Developed a Spring Boot and Spring MVC–based web application with RESTful APIs for
+                            employee record management.
+                            Implemented CRUD operations, MySQL integration, and Swagger API documentation to
+                            streamline admin tasks like adding, updating, deleting, and viewing employee details.
+                        </p>
+                        <div class="project-buttons">
+                            <a href="https://github.com/Naveenkumarnr-2002/Employee-Management-Using-SpringBoot-and-MongoDB"
+                               class="btn tech-btn github-btn-project btn-outline-light" target="_blank"><i
+                                    class="fa-brands fa-github"></i>
+                                GitHub</a>
+                            <a href="https://drive.google.com/file/d/1uN36ud8XJ1sk8IvnDB9tSiBx6iTFCGM2/view?usp=sharing"
+                               class="btn tech-btn btn-outline-light" target="_blank"><i
+                                    class="fa-brands fa-github"></i>
+                                Demo
+                                Link</a>
+                        </div>
+                    </div>
+
+                    <!-- Project 3-->
+                    <div class="card card-project">
+                        <div class="card-project-subtitle">Hospital Management System</div>
+                        <div class="card-project-tech">Tech: <a class="btn tech-btn spring-btn btn-outline-light"><i
+                                class="fa-solid fa-power-off"></i>
+                            SpringBoot</a>
+                            <a class="btn tech-btn mysql-btn btn-outline-light"><i class="bi bi-filetype-sql"></i> MySQL</a>
+
+                            <a class="btn tech-btn thymeleaf-btn btn-outline-light"><i class="fa-brands fa-envira"></i>
+                                ThymeLeaf</a>
+
+                        </div>
+                        <hr>
+                        <p class="">
+                            Developed using Spring Boot, Spring MVC, Thymeleaf, and MySQL. The system allows patients to
+                            book
+                            appointments and view prescriptions after consultations. Doctors can manage appointments by
+                            accepting or rejecting them and provide prescriptions to patients. Admins can manage
+                            doctors,
+                            appointment slots, and patient records efficiently. This project demonstrates full-stack
+                            development, role-based access, and seamless interaction between users and the database.
+                        </p>
+                        <div class="project-buttons">
+                            <a href="https://github.com/Naveenkumarnr-2002/Hospital-Management-System"
+                               class="btn tech-btn github-btn-project btn-outline-light" target="_blank"><i
+                                    class="fa-brands fa-github"></i>
+                                GitHub</a>
+                            <a href="https://drive.google.com/file/d/1PxHg4Bg6rgw286Ccrin2z_87Kgb7zTEh/view?usp=sharing"
+                               class="btn tech-btn btn-outline-light" target="_blank"><i
+                                    class="fa-brands fa-github"></i>
+                                Demo
+                                Link</a>
+                        </div>
+                    </div>
+
+                    <!-- Project 4-->
+                    <div class="card card-project">
+                        <div class="card-project-subtitle">Product Management System</div>
+                        <div class="card-project-tech">Tech: <a class="btn tech-btn spring-btn btn-outline-light"><i
+                                class="fa-solid fa-power-off"></i>
+                            SpringBoot</a>
+                            <a class="btn tech-btn mysql-btn btn-outline-light"><i class="bi bi-filetype-sql"></i> MySQL</a>
+
+                            <a class="btn tech-btn thymeleaf-btn btn-outline-light"><i class="fa-brands fa-envira"></i>
+                                ThymeLeaf</a>
+
+                        </div>
+                        <hr>
+                        <p class="">
+                            Developed to manage products efficiently by adding them with price and category details. The
+                            system
+                            allows displaying a list of all products and enables users to provide feedback on products.
+                            It
+                            demonstrates CRUD operations, data management, and user interaction within a structured
+                            system
+                        </p>
+                        <div class="project-buttons">
+                            <a href="https://github.com/Naveenkumarnr-2002/Product-Management-System"
+                               class="btn tech-btn github-btn-project btn-outline-light" target="_blank"><i
+                                    class="fa-brands fa-github"></i>
+                                GitHub</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container my-5 d-flex justify-content-center">
+
+        <div id="education" class="card education expandable my-4 d-flex">
+            <video autoplay muted loop id="education-video" aria-hidden="true">
+                <source src="videos/education_video.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+
+            <div class="card-education-title">EDUCATION</div>
+
+            <div class="card-education-content">
+                <div class="education-item">
+                    <h3>COLLEGE</h3>
+                    <h4>Mangayarkarasi College of Engineering</h4>
+                    <p>Bachelor of Engineering (B.E.) in Computer Science Engineering</p>
+                    <p><strong>CGPA:</strong> 7.52</p>
+                </div>
+
+                <div class="education-item">
+                    <h3>SCHOOL</h3>
+                    <h4>St. Britto Higher Secondary School</h4>
+                    <p>Higher Secondary Education (12th)</p>
+                    <p><strong>Percentage:</strong> 53%</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container my-5 d-flex justify-content-center">
+        <div id="certification" class="card certification expandable my-4 d-flex">
+            <video autoplay muted loop id="certifications-video" aria-hidden="true">
+                <source src="videos/certifications_video.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+
+            <div class="card-certification-title">CERTIFICATIONS</div>
+
+            <div class="card-certification-content">
+                <div class="certification-item">
+                    <strong>Course Name:</strong> Java (Internship - 2023)<br>
+                    <strong>Institution:</strong> Kevell Corp<br>
+                    <a href="https://drive.google.com/file/d/1BWORts0l15Kjx41sUlzGABf2Sa9uD2oi/view?usp=sharing"
+                       class="btn btn-outline-light certificate-btn" target="_blank">
+                        <i class="fa-solid fa-certificate"></i>
+                        <strong> View Certificate</strong>
+                    </a>
+                </div>
+
+                <div class="certification-item">
+                    <strong>Course Name:</strong> Java Full Stack Development (2025)<br>
+                    <strong>Institution:</strong> Guvi<br>
+                    <a href="https://drive.google.com/file/d/19-Exd0FUQpaKHNGchPWB6HjCqkThu7IS/view?usp=sharing"
+                       class="btn btn-outline-light certificate-btn" target="_blank">
+                        <i class="fa-solid fa-certificate"></i>
+                        <strong> View Certificate</strong>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="container my-5 d-flex justify-content-center">
+
+        <div id="contact" class="card contact-card">
+            <video autoplay muted loop class="contact-video" aria-hidden="true">
+                <source src="videos/contact_video.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+
+            <div class="contact-overlay">
+                <div class="contact-title">CONTACT ME</div>
+                <div class="contact-subtitle">VIA</div>
+                <div class="contact-content">
+                    <a class="btn tech-btn phone-btn" href="tel:9384286127"><i class="fa-solid fa-mobile"></i>
+                        9384286127</a>
+                    <a class="btn tech-btn email-btn" href="mailto:naveenkumarnr2007@gmail.com" target="_blank"><i
+                            class="fa-solid fa-envelope"></i> Email Me</a>
+                    <a class="btn tech-btn github-btn" href="https://github.com/Naveenkumarnr-2002" target="_blank"><i
+                            class="fa-brands fa-github"></i> GitHub</a>
+                    <a class="btn tech-btn linkedin-btn" href="https://www.linkedin.com/in/naveenkumarurl/"
+                       target="_blank"><i class="fa-brands fa-linkedin-in"></i> LinkedIn</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+            crossorigin="anonymous"></script>
+    <script>
+        function myFunction() {
+            const textElement = document.getElementById("demo");
+            demo.classList.toggle("show");
+        }
+    </script>
+    <script>
+        const video = document.getElementById("card-video");
+        video.playbackRate = 1.0; // 1.0 = normal speed, 1.5 = 1.5x faster, 2.0 = double speed
+    </script>
+
+    <script>
+        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+        const tooltipList = [...tooltipTriggerList].map(el => new bootstrap.Tooltip(el));
+    </script>
+
+</body>
+</html>
+

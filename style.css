@@ -1,0 +1,29 @@
+
+        #delayed-text {
+         opacity: 0;
+         transition: opacity 1s ease;
+     }
+
+     #delayed-text.show {
+         opacity: 1;
+     }
+
+     #demo {
+         opacity: 0;
+         max-height: 0;
+         overflow: hidden;
+         transition: opacity 0.5s ease, max-height 0.5s ease;
+     }
+
+     #demo.show {
+         opacity: 1;
+         max-height: 100px;
+     }
+
+        .navbar{
+        background-image:url(C:\Naveen\Port Folio\untitled\src\navbar.jpg);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+
+        }
