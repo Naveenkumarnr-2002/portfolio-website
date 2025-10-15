@@ -21,7 +21,7 @@
         }
 
         body {
-            background-color: black;
+            background-color: white;
         }
 
         .card {
@@ -37,7 +37,7 @@
             min-height: 200px; /* initial collapsed height */
             color: #fff;
             border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.42);
+            box-shadow: 0 0 15px black;
             overflow: hidden;
             display: flex;
             flex-direction: column;
@@ -46,7 +46,8 @@
             transition: all 0.8s ease;
             cursor: pointer;
             margin: 50px auto;
-            background: #1e1e1e; /* fallback if video fails */
+                background: -webkit-gradient(linear, left top, left bottom, from(#e5e5e5), to(#d8e2dc));
+            background: linear-gradient(180deg, #f8f9fa, #ced4da) /* fallback if video fails */
         }
 
         .cards:hover {
@@ -146,8 +147,8 @@
             width: 90%;
             max-width: 1300px;
             min-height: 250px;
-            background: rgba(0, 0, 0, 0.9);
-            color: white;
+            background: #90e0ef;
+            color: black;
             border-radius: 15px;
             /*box-shadow: 0 4px 15px rgba(0, 0, 0, 0.42);*/
             overflow: hidden;
@@ -157,7 +158,7 @@
             transition: all 0.8s ease;
             padding: 20px;
             cursor: pointer;
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 15px black;
 
         }
         .profile-card:hover{
@@ -233,12 +234,15 @@
 
         /* Hover Effects */
         .profile-card:hover .profile-name {
+        color:white;
             transform: translateX(-350px);
             opacity: 0.9;
         }
 
         .profile-card:hover .profile-role {
             opacity: 1;
+        color:white;
+
             transform: translateY(-30px);
         }
 
@@ -293,8 +297,9 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: rgb(0, 0, 0);
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.15);
+            background: #ff8fa3;
+                        box-shadow: 0 0 15px black;
+
 
         }
         .aboutMe-card:hover{
@@ -323,7 +328,8 @@
             height: 100%;
             padding: 20px;
             text-align: center;
-            color: #fff;
+            color: black;
+            font-weight: 600;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -333,7 +339,7 @@
         .aboutMe-title {
             font-size: 2rem;
             text-align: center;
-            font-weight: 600;
+            font-weight: 700;
             margin: 0;
             transform: translateY(85px);
             transition: all 0.8s ease;
@@ -364,11 +370,14 @@
 
         /* Hover animation */
         .aboutMe-card:hover .aboutMe-title {
+        color:white;
             transform: translateY(-10px);
         }
 
         .aboutMe-card:hover .aboutMe-content {
             opacity: 1;
+        color:white;
+
             transform: translateY(0);
         }
         .aboutMe-card:hover .aboutMe-video{
@@ -413,14 +422,14 @@
             min-height: 250px;
             border-radius: 15px;
             border: 1px solid rgba(255, 255, 255, 0.8);
-            background: rgba(0, 0, 0, 0.45);
+            background: #ffc300;
             backdrop-filter: blur(8px);
             color: white;
             text-align: center;
             justify-content: center;
             padding: 40px 20px;
             transition: all 0.9s ease-in-out;
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 15px black;
         }
         .skills:hover{
             transform: scale(1.02);
@@ -444,6 +453,7 @@
         /* Title */
         .card-skillsTitle {
             font-size: 2rem;
+            color:black;
             font-weight: 700;
             text-align: center;
             text-transform: uppercase;
@@ -552,13 +562,13 @@
             max-height: 1500px;
             border-radius: 15px;
             border: 1px solid rgba(255, 255, 255, 0.8);
-            background: rgba(0, 0, 0, 0.45);
+            background: #74c69d;
             backdrop-filter: blur(8px);
             color: white;
             text-align: center;
             padding: 40px 20px;
             transition: all 0.8s ease-in-out;
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 15px black;
 
         }
         /* ====== Background Video ====== */
@@ -580,6 +590,7 @@
             font-size: 2rem;
             text-align: center;
             font-weight: 700;
+            color:black;
             text-transform: uppercase;
             letter-spacing: 2px;
             margin-bottom: 15px;
@@ -692,14 +703,15 @@
             overflow: hidden;
             border-radius: 15px;
             border: 1px solid rgba(255, 255, 255, 0.8);
-            background: rgba(0, 0, 0, 0.45);
+            background: #ffdab9;
             backdrop-filter: blur(8px);
-            color: white;
+            color: black;
             text-align: center;
             padding: 40px 25px;
             transition: all 0.6s ease-in-out;
             margin: auto;
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.15);
+                        box-shadow: 0 0 15px black;
+
 
         }
         .project:hover {
@@ -716,7 +728,7 @@
             height: 100%;
             opacity: 0;
             object-fit: cover;
-            z-index: -1;
+            z-index: 0;
             filter: brightness(30%);
             transition: filter 0.5s ease-in-out;
         }
@@ -755,7 +767,7 @@
         }
 
         .project:hover #project-video {
-            opacity: 0.6;
+            opacity: 1;
             filter: brightness(30%);
         }
 
@@ -1144,10 +1156,11 @@
             margin: 40px auto;
             overflow: hidden;
             border-radius: 20px;
-            background: rgba(0, 0, 0, 0.7);
+            background: #1a759f;
             color: white;
             transition: all 0.6s ease-in-out;
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.15);
+                        box-shadow: 0 0 15px black;
+
         }
 
         #education video {
@@ -1165,6 +1178,7 @@
             text-align: center;
             font-size: 2.2rem;
             font-weight: 700;
+            color:black;
             letter-spacing: 2px;
             margin: 30px 0;
             transform: translateY(100px);
@@ -1219,13 +1233,14 @@
         }
 
         #education:hover video {
-            opacity: 0.6;
+            opacity: 1;
             filter: brightness(30%);
         }
 
         #education:hover .card-education-title {
             transform: translatey(-30%);
-            opacity: 0.7;
+            color:white;
+            opacity: 1;
         }
 
         #education:hover .card-education-content {
@@ -1276,10 +1291,10 @@
             margin: 40px auto;
             overflow: hidden;
             border-radius: 20px;
-            background: rgba(0, 0, 0, 0.7);
+            background: #e2afff;
             color: white;
             transition: all 0.6s ease-in-out;
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 15px black;
         }
 
         #certification video {
@@ -1297,6 +1312,7 @@
             text-align: center;
             font-size: 2.2rem;
             font-weight: 700;
+            color:black;
             letter-spacing: 2px;
             margin: 30px 0;
             transform: translateY(80px);
@@ -1350,13 +1366,14 @@
         }
 
         #certification:hover video {
-            opacity: 0.6;
+            opacity: 1;
             filter: brightness(40%);
         }
 
         #certification:hover .card-certification-title {
             transform: translatey(-30%);
-            opacity: 0.7;
+            color:white;
+            opacity: 1;
         }
 
         #certification:hover .card-certification-content {
@@ -1411,8 +1428,8 @@
             border-radius: 15px;
             overflow: hidden;
             /*border: 1px solid #ffffff;*/
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.15);
-            background: rgb(0, 0, 0); /* transparent background */
+            box-shadow: 0 0 15px black;
+            background: #fed0bb; /* transparent background */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -1451,6 +1468,7 @@
         .contact-title {
             font-size: 2rem;
             font-weight: bold;
+            color:black;
             transform: translateY(80px);
             transition: transform 0.5s ease;
         }
@@ -1526,7 +1544,7 @@
 
         .contact-card:hover .contact-video {
             opacity: 1;
-            filter: brightness(50%);
+            filter: brightness(100%);
         }
 
         /* Responsive */
@@ -1998,28 +2016,27 @@
                 </div>
             </div>
         </div>
-
     </div>
+</div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
-            crossorigin="anonymous"></script>
-    <script>
-        function myFunction() {
-            const textElement = document.getElementById("demo");
-            demo.classList.toggle("show");
-        }
-    </script>
-    <script>
-        const video = document.getElementById("card-video");
-        video.playbackRate = 1.0; // 1.0 = normal speed, 1.5 = 1.5x faster, 2.0 = double speed
-    </script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+        crossorigin="anonymous"></script>
+<script>
+    function myFunction() {
+        const textElement = document.getElementById("demo");
+        demo.classList.toggle("show");
+    }
+</script>
+<script>
+    const video = document.getElementById("card-video");
+    video.playbackRate = 1.0; // 1.0 = normal speed, 1.5 = 1.5x faster, 2.0 = double speed
+</script>
 
-    <script>
-        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
-        const tooltipList = [...tooltipTriggerList].map(el => new bootstrap.Tooltip(el));
-    </script>
+<script>
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+    const tooltipList = [...tooltipTriggerList].map(el => new bootstrap.Tooltip(el));
+</script>
 
 </body>
 </html>
-
